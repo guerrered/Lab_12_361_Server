@@ -10,6 +10,7 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -17,6 +18,8 @@ import com.google.gson.reflect.TypeToken;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+
+import Chronotimer.Console;
 
 public class Server {
 	
@@ -26,6 +29,12 @@ public class Server {
     static boolean gotMessageFlag = false;
 
     public static void main(String[] args) throws Exception {
+    	
+    	UserInterface();
+    	
+    	
+    	
+    	
     	new Table();
         // set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
@@ -148,5 +157,64 @@ public class Server {
     	ret+= "</table></body></html>";
     	return ret;
     }
+    public void UserInterface()
+    {
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("Enter 'C' for console input, 'F' for file input");
+    	String choice  = scan.nextLine();
+    	while(!choice.equalsIgnoreCase("C")&&!choice.equalsIgnoreCase("F"))
+    	{
+    		System.out.println("Enter 'C' for console input, 'F' for file input");
+    		choice = scan.nextLine();
+    	}	
+    	if(choice.equalsIgnoreCase("f"))
+    	{
+    		System.out.println("Enter the name of the input file");
+			String fileName = scan.nextLine();
+			File nameChecker  = new File(fileName);
+			while(!nameChecker.exists()){
+				System.out.println("Enter the name of the input file");
+				fileName = scan.nextLine();
+				nameChecker = new File(fileName);
+    	    }
+			scan.close();
+			//Do somehthing here to create table.
+			//create new player and pass to table class
+    	}	
+    	else if(choice.equalsIgnoreCase("c"))
+    	{
+    		System.out.println("Reading from the input");
+    		readFromConsole(scan);
+    	}
+			
+			
+    	
+    }
+    
+    public void readFromConsole(Scanner scan)
+    {
+     String	BibNum, LastName, FirstInitial,Time, enter;
+     System.out.println("Enter 1 to begin and enter 2 to exit");
+     enter = scan.nextLine();
+     while(!enter.equals(2))
+     {
+    	 System.out.println("Enter Bib number");
+    	 BibNum = scan.nextLine();
+    	 System.out.println("Enter LastName");
+    	 LastName = scan.nextLine();
+    	 System.out.println("Enter First intial");
+    	 FirstInitial = scan.nextLine();
+    	 new Player(BibNum,LastName, FirstInitial,null);
+    	 
+    	 
+    	 
+    	 
+     }
+     
+    	
+    }
+    
+    
+    
 
 }
