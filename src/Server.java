@@ -19,7 +19,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-import Chronotimer.Console;
+
 
 public class Server {
 	
@@ -157,7 +157,7 @@ public class Server {
     	ret+= "</table></body></html>";
     	return ret;
     }
-    public void UserInterface()
+    public static void UserInterface()
     {
     	Scanner scan = new Scanner(System.in);
     	System.out.println("Enter 'C' for console input, 'F' for file input");
@@ -191,7 +191,7 @@ public class Server {
     	
     }
     
-    public void readFromConsole(Scanner scan)
+    public static void readFromConsole(Scanner scan)
     {
      String	BibNum, LastName, FirstInitial,Time, enter;
      System.out.println("Enter 1 to begin and enter 2 to exit");
