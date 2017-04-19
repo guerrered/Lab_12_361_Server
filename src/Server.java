@@ -178,6 +178,7 @@ public class Server {
 				nameChecker = new File(fileName);
     	    }
 			scan.close();
+			readFromFile(fileName);
 			//Do somehthing here to create table.
 			//create new player and pass to table class
     	}	
@@ -191,7 +192,29 @@ public class Server {
     	
     }
     
-    public static void readFromConsole(Scanner scan)
+    private static void readFromFile(String fileName) {
+		// TODO Auto-generated method stub
+    	try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
+			String currentLine;
+			while((currentLine = buff.readLine()) != null){
+				String[] player = currentLine.split(" ");
+				commandExec(player);
+				
+				
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+    	
+    	
+		
+	}
+	private static void commandExec(String[] player) {
+		// TODO Auto-generated method stub
+		new Player(player[0], player[1], player[2], player[3]);
+		
+	}
+	public static void readFromConsole(Scanner scan)
     {
      String	BibNum, LastName, FirstInitial,Time, enter;
      System.out.println("Enter 1 to begin and enter 2 to exit");
