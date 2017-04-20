@@ -27,15 +27,16 @@ public class Server {
     // a shared area where we get the POST data and then use it in the other handler
     static String sharedResponse = "";
     static boolean gotMessageFlag = false;
-
+    public static Table table;
+    
     public static void main(String[] args) throws Exception {
-    	
+    	table = new Table();
     	UserInterface();
     	
     	
     	
     	
-    	new Table();
+    	
         // set up a simple HTTP server on our local host
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
@@ -125,8 +126,13 @@ public class Server {
                 nextChar=inputStr.read();
             }
             String x = sb.toString();
+           //might seperated by someother form
             String[] R = x.split(" ");
-         
+            for(int i=0;i<R.length;i++)
+            {
+            	table.refreshTable(R[i]);
+            }
+            
 
             // create our response String to use in other handler
             sharedResponse = sharedResponse+sb.toString();
@@ -153,7 +159,7 @@ public class Server {
      */
     public static String HTMLtoString(){
     	String ret = "<html><head><title>Company Directory</title><link rel = \"stylesheet\" type= \"text/css\" href = \"styles.css\"></head><body><h1 title =\"Hidden(1) Bit\">Company Directory</h1><table style =\"width:100%>\"<tr><th>FirstName</th><th>LastName</th><th>Department</th><th>Title</th><th>Phone Number</th><th>Gender</th></tr>";
-    	ret += Table.newTable();
+    //	ret += Table.newTable();
     	ret+= "</table></body></html>";
     	return ret;
     }
@@ -211,7 +217,8 @@ public class Server {
 	}
 	private static void commandExec(String[] player) {
 		// TODO Auto-generated method stub
-		new Player(player[0], player[1], player[2], player[3]);
+		Player p=new Player(player[0], player[1], player[2], player[3]);
+		table.addToTable(p);
 		
 	}
 	public static void readFromConsole(Scanner scan)
@@ -227,11 +234,8 @@ public class Server {
     	 LastName = scan.nextLine();
     	 System.out.println("Enter First intial");
     	 FirstInitial = scan.nextLine();
-    	 new Player(BibNum,LastName, FirstInitial,null);
-    	 
-    	 
-    	 
-    	 
+    	 Player p =new Player(BibNum,LastName, FirstInitial,null);
+    	 table.addToTable(p);
      }
      
     	
