@@ -160,6 +160,8 @@ public class Server {
     public static String HTMLtoString(){
     	String ret = "<html><head><title>Company Directory</title><link rel = \"stylesheet\" type= \"text/css\" href = \"styles.css\"></head><body><h1 title =\"Hidden(1) Bit\">Company Directory</h1><table style =\"width:100%>\"<tr><th>FirstName</th><th>LastName</th><th>Department</th><th>Title</th><th>Phone Number</th><th>Gender</th></tr>";
     //	ret += Table.newTable();
+    	//not sure whether the table will be create in the Table class
+    	
     	ret+= "</table></body></html>";
     	return ret;
     }
