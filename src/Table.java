@@ -31,7 +31,10 @@ public class Table {
 				toMod.time = p.time;//update the time value
 			}
 			else{
+				p.firstInitial = "N/A";
+				p.lastName ="N/A";
 				map.put(key, p);//adds new player to list no name only time and bibNum
+				
 			}
 		}
 	}
