@@ -42,13 +42,13 @@ public class Table {
 	 * if a previous player exists with the same bib number they
 	 * will be replaced by p
 	 */
+
 	public void addToTable(Player p){
 		Integer key = Integer.parseInt(p.bibNumber);//adds player to map
 		if(map.containsKey(key)){
 			map.remove(key);
 		}
 		map.put(key, p);
-		
 	}
 	
 	/**
@@ -98,6 +98,10 @@ public class Table {
 			
 		}
 	};
+	
+	
+	
+	
 	
 	
 }

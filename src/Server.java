@@ -158,9 +158,9 @@ public class Server {
      * Possibly unneeded as this was fix for DisplayHandler which we altered
      */
     public static String HTMLtoString(){
-    	String ret = "<html><head><title>Company Directory</title><link rel = \"stylesheet\" type= \"text/css\" href = \"styles.css\"></head><body><h1 title =\"Hidden(1) Bit\">Company Directory</h1><table style =\"width:100%>\"<tr><th>FirstName</th><th>LastName</th><th>Department</th><th>Title</th><th>Phone Number</th><th>Gender</th></tr>";
-    //	ret += Table.newTable();
-    	//not sure whether the table will be create in the Table class
+    	String ret = "<html><head><title>Racer Record</title><link rel = \"stylesheet\" type= \"text/css\" href = \"styles.css\"></head><body><h1 title =\"Hidden(1) Bit\">Racer Record</h1><table style =\"width:100%>\"<tr><th>FirstInitial</th><th>LastName</th><th>BibNumber</th><th>Time</th></tr>";
+    	ret += table.getListAsHTML();
+    	
     	
     	ret+= "</table></body></html>";
     	return ret;
@@ -226,9 +226,9 @@ public class Server {
 	public static void readFromConsole(Scanner scan)
     {
      String	BibNum, LastName, FirstInitial,Time, enter;
-     System.out.println("Enter 1 to begin and enter 2 to exit");
+     System.out.println("Enter any to beginning or exit");
      enter = scan.nextLine();
-     while(!enter.equals(2))
+     while(!enter.equalsIgnoreCase("exit"))
      {
     	 System.out.println("Enter Bib number");
     	 BibNum = scan.nextLine();
@@ -238,6 +238,8 @@ public class Server {
     	 FirstInitial = scan.nextLine();
     	 Player p =new Player(BibNum,LastName, FirstInitial,null);
     	 table.addToTable(p);
+    	 System.out.println("Enter any continue and exit");
+    	 enter = scan.nextLine();
      }
      
     	
